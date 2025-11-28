@@ -1,0 +1,131 @@
+body {
+    background-color: transparent;
+}
+
+/*
+    ANIMATION FOR H1 element
+*/
+@keyframes forceColorPulse {
+  0% {
+    color: #ff0000; /* červená */
+  }
+  25% {
+    color: rgb(63, 38, 153);
+  }
+  50% {
+    color: #0000ff; /* modrá */
+  }
+  75% {
+    color: #b62828;
+  }
+  100% {
+    color: #ff0000; /* späť červená */
+  }
+}
+
+#app {
+  width: 50%;
+  margin: 0 auto;
+}
+
+h1,h3 {
+    text-align: center;
+    animation: forceColorPulse 2s infinite ease-in-out;
+}
+
+.card {
+    width: 50%;
+    margin: 2em auto;
+    padding: 2em 2em;
+    background-color: rgb(199, 245, 139);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+}
+
+.choose-side {
+  display: flex;
+  margin: 2em 0;
+}
+
+.choose-side button {
+  margin: 0 0.5em;
+  
+}
+
+.light-side-button, .dark-side-button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.light-side-button {
+  background-color: #0000ff;
+  color: wheat;
+  padding: 0.5em;
+  border: 2px solid black;
+  border-radius: 1em;
+} 
+
+.light-side-button:hover,
+.light-side-button:active {
+  background-color: #9898ca;
+  color: black;
+}
+
+.dark-side-button {
+  background-color: #ff0000;
+  color: rgb(0, 0, 0);
+  padding: 0.5em; 
+  border: 2px solid black;
+  border-radius: 1em;
+} 
+
+.dark-side-button:hover,
+.dark-side-button:active {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+}
+
+.score {
+    display: flex;
+    justify-content: space-around;
+}
+
+.light-side, .dark-side {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bold;
+    padding: 1em;
+    margin: 0.5em;
+
+
+    border: 3px solid rgb(88, 19, 167);
+    border-radius: 2em;
+
+}
+
+.dark-side {
+    border: 3px solid rgb(214, 66, 8);
+    border-radius: 2em;
+}
+
+.score strong {
+    font-size: 5em; 
+}
+
+.score>:first-child {
+    color: rgb(74, 71, 241);
+}
+
+.score>:nth-child(2) {
+    color: rgb(250, 7, 7);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-around;
+}

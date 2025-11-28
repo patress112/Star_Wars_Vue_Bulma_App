@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Bulma app</title>
+</head>
+<body>
+    <div id="app">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-4by3">
+                <img
+                    :src="imageSrc"
+                    alt="Placeholder image"
+                />
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="content">
+                    <h1>What is your Force connection?</h1>
+                    <p>Increase your Force score and you will see, what Star Wars character (Jedi or Sith) is equal to you 😎</p>
+
+                    <h3>What side of the force do you prefer? 😎</h3>
+                    <div class="choose-side">
+                        <button class="light-side-button" @click="sideChosen = 'light'">Light side of the Force</button>
+                        <button class="dark-side-button" @click="sideChosen= 'dark'">Dark side of the Force</button>
+                    </div>
+
+                    <div class="score">
+                        <strong v-show="sideChosen === 'light'"> {{ lightSideScore }} </strong>
+                        <strong v-show="sideChosen === 'dark'"> {{ darkSideScore }} </strong>
+                    </div>
+                    
+                </div>
+            </div>
+            <footer class="card-footer">
+                <div class="light-side" v-show="sideChosen === 'light'">
+                    <p>Light side of the Force connection</p>
+                    <a href="#" class="card-footer-item" @click.prevent="lightSideScore++">Increase ➕</a>
+                    <a href="#" class="card-footer-item" @click.prevent="lightSideScore--">Decrease ➖</a>
+                    <a href="#" class="card-footer-item" @click.prevent="lightSideScore=0">Reset ❌</a>
+                </div>
+                <div class="dark-side" v-show="sideChosen === 'dark'">
+                    <p>Dark side of the Force connection</p>
+                    <a href="#" class="card-footer-item" @click.prevent="darkSideScore++">Increase ➕</a>
+                    <a href="#" class="card-footer-item" @click.prevent="darkSideScore--">Decrease ➖</a>
+                    <a href="#" class="card-footer-item" @click.prevent="darkSideScore=0">Reset ❌</a>
+                </div>
+                
+            </footer>
+        </div>
+    </div>
+    
+   <script>
+        const { createApp, ref, computed } = Vue;
+        createApp({
+            setup() {
+                let lightSideScore = ref(0)
+                let darkSideScore = ref(0)
+                let sideChosen = ref('')
+
+                const imageSrc = computed(() => {
+                    // DEFAULT OPTION
+                    if (lightSideScore.value <= 0 && darkSideScore.value <= 0) {
+                        return '/img/Star-wars-default.jpg';
+                        }
+
+                    // LIGHT SIDE OF THE FORCE
+                    if (sideChosen.value === 'light') {
+                        if (lightSideScore.value > 0 && lightSideScore.value <= 15) {
+                            return '/img/Young-Anakin.jpeg';
+                            }
+
+                        if (lightSideScore.value > 15 && lightSideScore.value <= 50) {
+                            return '/img/obi-wan-kenobi.jpg';
+                            }
+
+                        if (lightSideScore.value > 50 && lightSideScore.value <= 75) {
+                            return '/img/mace-windu.jpg';
+                            }
+
+                        if (lightSideScore.value > 75) {
+                            return '/img/yoda.jpg';
+                            }
+                        }
+
+                    // DARK SIDE OF THE FORCE    
+                    if (sideChosen.value === 'dark') {
+                        if (darkSideScore.value > 0 && darkSideScore.value <= 15) {
+                            return '/img/asajj_ventress.jpg';
+                            }
+
+                        if (darkSideScore.value > 15 && darkSideScore.value <= 50) {
+                            return '/img/darth-maul.jpg';
+                            }
+
+                        if (darkSideScore.value > 50 && darkSideScore.value <= 75) {
+                            return '/img/count-dooku.jpg';
+                            }
+
+                        if (darkSideScore.value > 75) {
+                            return '/img/darth-sidious.jpg';
+                            }
+                    }    
+
+                }
+
+                )
+                return { 
+                    lightSideScore, darkSideScore, sideChosen, imageSrc 
+            };
+        }
+        }).mount('#app');
+    </script>
+
+</body>
+</html>
